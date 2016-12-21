@@ -972,7 +972,7 @@ load_agent_list (WINDOW * main_win, char *addr)
   post_gmenu (menu);
   snprintf (buf, sizeof buf, "User Agents for %s", addr);
   draw_header (win, buf, " %s", 1, 1, list_w - 2, color_panel_header);
-  mvwprintw (win, 2, 2, "[UP/DOWN] to scroll - [q] to close window");
+  mvwprintw (win, 2, 2, "按[UP/DOWN]滚屏 - 按[q]关闭窗口");
   wrefresh (win);
 
   while (quit) {
@@ -1253,7 +1253,7 @@ load_confdlg_error (WINDOW * parent_win, char **errors, int nerrors)
   post_gmenu (menu);
 
   draw_header (win, ERR_HEADER, " %s", 1, 1, w - 2, color_error);
-  mvwprintw (win, 2, 2, "按[UP/DOWN]来滚屏 - 按[q]以退出");
+  mvwprintw (win, 2, 2, "按[UP/DOWN]滚屏 - 按[q]退出");
 
   wrefresh (win);
   while (quit) {
@@ -1826,12 +1826,13 @@ load_sort_win (WINDOW * main_win, GModule module, GSort * sort)
 /* Help menu data (F1/h). */
 static const char *help_main[] = {
   "Copyright (C) 2009-2016 by Gerardo Orellana",
+  "Chinesization by xiaoshuai",
   "http://goaccess.io - <hello@goaccess.io>",
   "Released under the MIT License.",
   "",
   "See `man` page for more details",
   "",
-  "GoAccess is an open source real-time web log analyzer and",
+  "GoAccess是一个开源的实时的web日志分析工具",
   "interactive viewer that runs in a terminal in *nix systems.",
   "It provides fast and valuable HTTP statistics for system",
   "administrators that require a visual server report on the",
@@ -1913,8 +1914,8 @@ load_help_popup (WINDOW * main_win)
   }
   post_gmenu (menu);
 
-  draw_header (win, "GoAccess Quick Help", " %s", 1, 1, w2, color_panel_header);
-  mvwprintw (win, 2, 2, "[UP/DOWN] to scroll - [q] to quit");
+  draw_header (win, "GoAccess快速帮助指南", " %s", 1, 1, w2, color_panel_header);
+  mvwprintw (win, 2, 2, "按[UP/DOWN]滚屏 - 按[q]退出");
 
   wrefresh (win);
   while (quit) {
