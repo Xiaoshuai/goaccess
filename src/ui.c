@@ -382,8 +382,8 @@ update_active_module (WINDOW * header_win, GModule current)
   const char *module = module_to_label (current);
   int col = getmaxx (stdscr);
 
-  char *lbl = xmalloc (snprintf (NULL, 0, "[Active Panel: %s]", module) + 1);
-  sprintf (lbl, "[Active Panel: %s]", module);
+  char *lbl = xmalloc (snprintf (NULL, 0, "[激活的仪表盘: %s]", module) + 1);
+  sprintf (lbl, "[激活的仪表盘: %s]", module);
 
   wmove (header_win, 0, 30);
 
@@ -1159,12 +1159,12 @@ draw_formats (WINDOW * win, int w2)
 {
   char *date_format = NULL, *log_format = NULL, *time_format = NULL;
 
-  draw_header (win, "Log Format Configuration", " %s", 1, 1, w2,
+  draw_header (win, "日志格式配置", " %s", 1, 1, w2,
                color_panel_header);
-  mvwprintw (win, 2, 2, "[SPACE] to toggle - [ENTER] to proceed - [q]uit");
+  mvwprintw (win, 2, 2, "按[SPACE]切换选择 - 按[ENTER]处理 - 按[q]退出");
 
   /* set log format from config file if available */
-  draw_header (win, "Log Format - [c] to add/edit format", " %s", 11, 1, w2,
+  draw_header (win, "日志格式 - [c] to add/edit format", " %s", 11, 1, w2,
                color_panel_header);
   if ((log_format = get_input_log_format ())) {
     mvwprintw (win, 12, 2, "%.*s", CONF_MENU_W, log_format);
@@ -1173,7 +1173,7 @@ draw_formats (WINDOW * win, int w2)
   }
 
   /* set log format from config file if available */
-  draw_header (win, "Date Format - [d] to add/edit format", " %s", 14, 1, w2,
+  draw_header (win, "日期格式 - [d] to add/edit format", " %s", 14, 1, w2,
                color_panel_header);
   if ((date_format = get_input_date_format ())) {
     mvwprintw (win, 15, 2, "%.*s", CONF_MENU_W, date_format);
@@ -1182,7 +1182,7 @@ draw_formats (WINDOW * win, int w2)
   }
 
   /* set log format from config file if available */
-  draw_header (win, "Time Format - [t] to add/edit format", " %s", 17, 1, w2,
+  draw_header (win, "时间格式 - [t] to add/edit format", " %s", 17, 1, w2,
                color_panel_header);
   if ((time_format = get_input_time_format ())) {
     mvwprintw (win, 18, 2, "%.*s", CONF_MENU_W, time_format);
@@ -1196,11 +1196,11 @@ set_formats (char *date_format, char *log_format, char *time_format)
 {
   /* display status bar error messages */
   if (!time_format && !conf.time_format)
-    return "Select a time format.";
+    return "选择时间格式.";
   if (!date_format && !conf.date_format)
-    return "Select a date format.";
+    return "选择日期格式.";
   if (!log_format && !conf.log_format)
-    return "Select a log format.";
+    return "选择日志格式.";
 
   if (time_format) {
     free (conf.time_format);
@@ -1253,7 +1253,7 @@ load_confdlg_error (WINDOW * parent_win, char **errors, int nerrors)
   post_gmenu (menu);
 
   draw_header (win, ERR_HEADER, " %s", 1, 1, w - 2, color_error);
-  mvwprintw (win, 2, 2, "[UP/DOWN] to scroll - [q] to quit");
+  mvwprintw (win, 2, 2, "按[UP/DOWN]来滚屏 - 按[q]以退出");
 
   wrefresh (win);
   while (quit) {
@@ -1302,16 +1302,16 @@ render_confdlg (GLog * glog, GSpinner * spinner)
 
   /* conf dialog menu options */
   const char *choices[] = {
-    "NCSA Combined Log Format",
-    "NCSA Combined Log Format with Virtual Host",
-    "Common Log Format (CLF)",
-    "Common Log Format (CLF) with Virtual Host",
-    "W3C",
-    "Squid Native Format",
-    "CloudFront (Download Distribution)",
-    "Google Cloud Storage",
-    "AWS Elastic Load Balancing (HTTP/S)",
-    "AWS Simple Storage Service (S3)",
+    "NCSA组合的日志格式",
+    "NCSA组合的日志格式且含有虚拟主机",
+    "通用日志格式(CLF)",
+    "通用日志格式(CLF)且含有虚拟主机",
+    "W3C格式",
+    "Squid原生格式",
+    "CloudFront(分布式下载)",
+    "Google云存储",
+    "AWS弹性负载平衡(HTTP/S)",
+    "AWS简单存储服务(S3)",
   };
   n = ARRAY_SIZE (choices);
   getmaxyx (stdscr, y, x);
